@@ -97,10 +97,10 @@ def openinfowindow(parentwindow):
 Developed by:
 
 * Ashutosh Dubey\t\t(IMCA 2021 batch)
-* Kushagra Mehrotra\t(IMCA 2019 batch) 
+
 \t\t\t\t
 Student at Acropolis FCA department under guidance of \t\t
-Prof. Nitin Kulkarni.
+Prof. Nitin Kulkarni & Kushagra Mehrotra\t(IMCA 2019 batch) .
 
 For help and assistance email at: 
 ashutoshdubey.ca21@acropolis.in
@@ -228,6 +228,12 @@ def Upload_Action():
     updateView()
     clearInputs()
     print(inputs)
+def Change_Sort_Order(event=None):
+    global order
+    order = not order
+    button_order.configure(text = f"{'^' if order else 'v'}")
+    updateView()
+    disableButtons()
 
 def disableButtons(event=None):
     global curItemId
@@ -537,8 +543,9 @@ if __name__ == '__main__':
 
     # Creating the application window
     rootwindow = tk.Tk()
-    rootwindow.title("Stress Management")
+    rootwindow.title("Stress Meter")
     rootwindow.resizable(False, False)
+    center_window(rootwindow,1160,560)
 
     frame_datetime = tk.Frame(rootwindow, width=FIELD_SIZE)
 
@@ -697,7 +704,7 @@ if __name__ == '__main__':
 
     button_order    = tk.Button(frame_Action,
                         text = f"{'^' if order else 'v'}", 
-                        )
+                        command= Change_Sort_Order)
     
     sort_keys = ('Upload Time (Default)', 'Survey Name', 'Survey Time',
                         'Institute', 'Department')
